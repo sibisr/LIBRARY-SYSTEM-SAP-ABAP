@@ -475,20 +475,17 @@ ENDMODULE.
 *&---------------------------------------------------------------------*
 *       text
 *----------------------------------------------------------------------*
+
 MODULE user_command_1005 INPUT.
   IF sy-ucomm = 'GETBOOK'.
     SELECT SINGLE * FROM za16_l_getbook INTO gg_book WHERE stu_id = stu_id.
     IF gg_book IS NOT INITIAL.
       IF gg_book-book_id = bk_id.
-        MESSAGE 'THE BOOK ALREADY EXISTS TO YOU' TYPE 'I'.
-      ELSE.
-        PERFORM gt_book.
+        MESSAGE 'THE BOOK ALREADY EXISTS TO YOU' TYPE 'I'
       ENDIF.
-    ELSE.
-      PERFORM gt_book.
     ENDIF.
   ENDIF.
-  IF sy-ucomm = 'exit'.
+  IF sy-ucomm = 'EXIT'.
     LEAVE TO SCREEN 0.
   ENDIF.
   IF sy-ucomm = 'BACK'.
